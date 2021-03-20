@@ -1,0 +1,28 @@
+.sticker {
+    position: relative;
+    padding: 30px;
+    border: 2px solid purple;
+    border-radius: 15px;
+    background-color: #fff;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.text {
+    padding: 15px;
+    border: 1px solid #b4b3b3;
+    border-radius: 5px;
+    color: #b4b3b3;
+}
+
+.deleteBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
