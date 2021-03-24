@@ -1,0 +1,26 @@
+a:active, a:focus { outline: none; }
+
+input, textarea {outline:none;}
+input:active, textarea:active {outline:none;}
+:focus {outline:none;}
+textarea {resize:none;}
+textarea {resize:vertical;}
+textarea {resize:horizontal;}
+
+.header {
+    position: relative;
+    height: 20px;
+}
+
+.header-button {
+    position: absolute;
+    top: 25px;
+    right: 50px;
+    padding: 10px 20px;
+    background-color: orangered;
+    border-radius: 20px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 600;
+    z-index: 10;
+}
