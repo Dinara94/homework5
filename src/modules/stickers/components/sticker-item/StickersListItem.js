@@ -9,7 +9,7 @@ export default function StickersListItem(props) {
 
   const onDeleteBtnClick = (e) => {
     e.stopPropagation();
-    props.onDelete(props.item.id);
+    props.onDelete(props.item);
   };
 
   return (

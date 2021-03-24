@@ -29,9 +29,9 @@ export default function Stickers() {
   };
 
 
-  const deleteItem = (id) => {
-    deleteSticker(id);
-    setList(list.filter((item) => item.id !== id));
+  const deleteItem = (sticker) => {
+    deleteSticker(sticker.id);
+    setList(list.filter((item) => item.id !== sticker.id));
   };
 
 
