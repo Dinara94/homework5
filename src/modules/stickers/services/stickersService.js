@@ -1,34 +1,45 @@
-import { STICKERS_URL } from '../constants';
+import Axios from 'axios';
+import { useEffect, useState } from 'react';
+import api from '../api';
+
+const URL = 'https://5dd3d5ba8b5e080014dc4bfa.mockapi.io/stickers/';
 const EMPTY_STICKER = {
     description: '',
 };
 
-export function getStickers() {
-    return fetch(STICKERS_URL).then((res) => res.json());
-}
+export default function useStickers() {
+    const [stickers, setStickers] = useState([]);
 
-export function createSticker() {
-    return fetch(STICKERS_URL, {
-        method: 'POST',
-        body: JSON.stringify(EMPTY_STICKER),
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then((res) => res.json());
-}
+    useEffect(() => {
+        api.get().then(({ data }) => setStickers(data));
+    }, []);
 
-export function updateSticker(sticker) {
-    return fetch(STICKERS_URL + sticker.id, {
-        method: 'PUT',
-        body: JSON.stringify(sticker),
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }).then((res) => res.json());
-}
+    function addSticker() {
+        api.post('', EMPTY_STICKER).then(({ data }) =>
+            setStickers((stickers) => [...stickers, data])
+        );
+    }
 
-export function deleteSticker(id) {
-    return fetch(STICKERS_URL + id, {
-        method: 'DELETE',
-    }).then((res) => res.json());
+    function updateSticker(sticker) {
+        api.put(sticker.id, sticker).then(({ data }) =>
+            setStickers((stickers) =>
+                stickers.map((sticker) =>
+                    stiker.id === data.id ? data : sticker
+                )
+            )
+        );
+    }
+
+    function deleteSticker(id) {
+        api.delete(id);
+
+        setStickers(stickers.filter((item) => item.id !== id));
+    }
+
+    return {
+        stickers,
+        addSticker,
+        deleteSticker,
+        updateSticker,
+    };
 }

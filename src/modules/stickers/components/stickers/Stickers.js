@@ -1,37 +1,27 @@
 import React, { useEffect, useState } from "react";
 import StickersList from "../stickers-list/StickersList";
-import {
-  createSticker,
-  deleteSticker,
-  getStickers,
-  updateSticker,
-} from "../../services/stickersService";
+import useStickers from '../../services/stickersService';
 
 import "./stickers.css";
 
 export default function Stickers() {
-  const [list, setList] = useState([]);
+  const { stickers, addSticker, deleteSticker } = useStickers();
 
-  useEffect(() => {
-    getStickers().then((list) => setList(list));
-  }, [list]);
+  function createItem() {
+    addSticker();
+  }
 
-  const createItem = (sticker) => {
-    createSticker(sticker).then((data) => {
-      setList([...list, data]);
-    });
-  };
-
-  const updateItem = (sticker) => {
+  function updateItem(sticker) {
     updateSticker(sticker).then((data) => {
       setList(list.map((item) => (item.id === data.id ? data : item)));
     });
   };
 
+  function saveSticker(id) {}
 
-  const deleteItem = (sticker) => {
+
+  function deleteItem(sticker) {
     deleteSticker(sticker.id);
-    setList(list.filter((item) => item.id !== sticker.id));
   };
 
 
