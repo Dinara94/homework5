@@ -15,16 +15,18 @@ export default function useStickers() {
     }, []);
 
     function addSticker() {
-        api.post('', EMPTY_STICKER).then(({ data }) =>
-            setStickers((stickers) => [...stickers, data])
-        );
+        api.post('', EMPTY_STICKER, {
+            headers: { "Content-Type": "application.json "},
+        }).then(({ data }) => setStickers((stickers) => {
+            return [...stickers, data];
+        }));
     }
 
     function updateSticker(sticker) {
         api.put(sticker.id, sticker).then(({ data }) =>
             setStickers((stickers) =>
                 stickers.map((sticker) =>
-                    stiker.id === data.id ? data : sticker
+                    sticker.id === data.id ? data : sticker
                 )
             )
         );
